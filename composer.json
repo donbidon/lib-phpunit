@@ -1,0 +1,24 @@
+{
+    "name": "donbidon/lib-phpunit",
+    "type": "library",
+    "description": "PHPUnit extension",
+    "homepage": "https://github.com/donbidon/lib-phpunit",
+    "keywords": ["testing", "php", "phpunit", "extension"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name":     "donbidon",
+            "homepage": "http://donbidon.rf.gd/"
+        }
+    ],
+    "require": {
+        "phpunit/phpunit" : "dev-master"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable":      true,
+    "autoload": {
+        "psr-4": {
+            "donbidon\\Lib\\PHPUnit\\": ["src", "tests"]
+        }
+    }
+}
