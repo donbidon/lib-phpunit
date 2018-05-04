@@ -32,10 +32,7 @@ namespace donbidon\Lib\PHPUnit;
  *         self::setInstancePropertyName('myInstance');
  *         $this->allowToResetInstance();
  *
- *         echo sprintf(
- *             "%s called\n",
- *             __METHOD__
- *         );
+ *         echo sprintf("%s called%s", __METHOD__, PHP_EOL);
  *     }
  * }
  *
