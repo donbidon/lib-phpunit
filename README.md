@@ -1,5 +1,6 @@
 # PHPUnit functionality extension
 Allows to mark group of tests as skipped.
+
 Resetting singleton instance functionality.
 
 ## Installing
