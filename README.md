@@ -3,7 +3,7 @@ Implements debug functionality, allows to mark groups of tests as skipped  in PH
 
 Allows to reset singleton instance.
 
-Look <a href="//donbidon.github.io/docs/packages/lib-phpunit/" target="_blank">API documentation</a>.
+Look <a href="https://donbidon.github.io/docs/packages/lib-phpunit/" target="_blank">API documentation</a>.
 
 ## Installing
 Add following code to your "composer.json" file
@@ -14,8 +14,10 @@ Add following code to your "composer.json" file
             "url":  "https://github.com/donbidon/lib-phpunit.git"
         }
     ],
+    "minimum-stability": "dev",
+    "prefer-stable":      true,
     "require": {
-        "donbidon/lib-phpunit": "#v0.1.0"
+        "donbidon/lib-phpunit": "0.1.0"
     }
 ```
 and run `composer update`.
