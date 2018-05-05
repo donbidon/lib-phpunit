@@ -1,7 +1,9 @@
 # PHPUnit functionality extension
-Allows to mark group of tests as skipped.
+Implements debug functionality, allows to mark groups of tests as skipped  in PHPUnit context.
 
-Resetting singleton instance functionality.
+Allows to reset singleton instance.
+
+Look [**donbidon/lib-phpunit docs**](https://donbidon.github.io/docs/packages/lib-phpunit).
 
 ## Installing
 Add following code to your "composer.json" file
@@ -13,7 +15,7 @@ Add following code to your "composer.json" file
         }
     ],
     "require": {
-        "donbidon/lib-phpunit": "dev-master"
+        "donbidon/lib-phpunit": "v#0.1.0"
     }
 ```
 and run `composer update`.
@@ -21,9 +23,19 @@ and run `composer update`.
 ## Usage
 
 ### Mark tests as skipped
-
 ```php
-class MyTest extends \donbidon\Lib\PHPUnit\TestCase
+class MyClass
+{
+     public function foo()
+     {
+     }
+
+     public function bar()
+     {
+     }
+}
+
+class MyClassTest extends \donbidon\Lib\PHPUnit\TestCase
 {
     public function testFoo()
     {

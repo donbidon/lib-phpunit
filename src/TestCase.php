@@ -16,9 +16,22 @@ error_reporting(E_ALL);
 /**
  * PHPUnit functionality extension.
  *
- * Allows to mark group of tests as skipped.
+ * Implements debug functionality (<a href="#method__e">self::_e()</a> and etc).
+ * <br />
+ * Allows to mark groups of tests as skipped.
  * ```php
- * class MyTest extends \donbidon\Lib\PHPUnit\TestCase
+ * class MyClass
+ * {
+ *      public function foo()
+ *      {
+ *      }
+ *
+ *      public function bar()
+ *      {
+ *      }
+ * }
+ *
+ * class MyClassTest extends \donbidon\Lib\PHPUnit\TestCase
  * {
  *     public function testFoo()
  *     {
@@ -46,6 +59,16 @@ error_reporting(E_ALL);
  * FAILURES!
  * Tests: 2, Assertions: 1, Failures: 1, Skipped: 1.
  * ```
+ * <!-- move: index.html -->
+ * <ul>
+ *     <li><a href="classes/donbidon.Lib.PHPUnit.TestCase.html">
+ * \donbidon\Lib\PHPUnit\TestCase</a> implements debug functionality, allows to
+ * mark groups of tests as skipped.</ li>
+ *     <li><a href="classes/donbidon.Lib.PHPUnit.T_ResetInstance.html">
+ * \donbidon\Lib\PHPUnit\T_ResetInstance</a> implements functionality allowing
+ * to reset singleton instance.</ li>
+ * </ul>
+* <!-- /move -->
  */
 class TestCase extends \PHPUnit\Framework\TestCase
 {
@@ -122,12 +145,34 @@ class TestCase extends \PHPUnit\Framework\TestCase
         }
     }
 
+
+    /**
+     * Modifies group name according to arguments.
+     *
+     * @param &string $group
+     * @param bool $isolate     Flag specifying to isolate groups by current
+     *                          class name
+     *
+     * @return void
+     *
+     * @internal
+     */
+    protected static function modyfyGroup(&$group, $isolate)
+    {
+        $group = (string)$group;
+        if ($isolate) {
+            $group = sprintf("%s@%s", __CLASS__, $group);
+        }
+    }
+
     /**
      * Outputs string.
      *
      * @param string $string
      *
      * @return void
+     *
+     * @link http://php.net/manual/en/function.echo.php  echo
      */
     protected function _e($string)
     {
@@ -141,7 +186,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
      *
      * @return void
      *
-     * @link http://php.net/manual/en/function.print-r.php
+     * @link http://php.net/manual/en/function.print-r.php  print_r()
      */
     protected static function _pr($expression)
     {
@@ -155,7 +200,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
      *
      * @return void
      *
-     * @link http://php.net/manual/en/function.var-dump.php
+     * @link http://php.net/manual/en/function.var-dump.php  var_dump()
      */
     protected static function _vd($expression)
     {
@@ -173,29 +218,10 @@ class TestCase extends \PHPUnit\Framework\TestCase
      *
      * @return void
      *
-     * @link http://php.net/manual/en/function.var-export.php
+     * @link http://php.net/manual/en/function.var-export.php  var_export()
      */
     protected static function _ve($expression)
     {
         self::_e(var_export($expression, TRUE));
-    }
-
-    /**
-     * Modifies group name according to arguments.
-     *
-     * @param &string $group
-     * @param bool    $isolate  Flag specifying to isolate groups by current
-     *                          class name
-     *
-     * @return void
-     *
-     * @internal
-     */
-    protected static function modyfyGroup(&$group, $isolate)
-    {
-        $group = (string)$group;
-        if ($isolate) {
-            $group = sprintf("%s@%s", __CLASS__, $group);
-        }
     }
 }

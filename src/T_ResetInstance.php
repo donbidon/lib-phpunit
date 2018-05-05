@@ -9,7 +9,7 @@
 namespace donbidon\Lib\PHPUnit;
 
 /**
- * Functionality allowing to reset singleton instance.
+ * Implements functionality allowing to reset singleton instance.
  *
  * ```php
  * class Foo
