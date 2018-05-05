@@ -149,9 +149,9 @@ class T_ResetInstanceTest extends \PHPUnit\Framework\TestCase
      * Tests functionality.
      *
      * @return void
-     * @covers donbidon\Lib\PHPUnit\T_ResetInstance::resetInstance
-     * @covers donbidon\Lib\PHPUnit\T_ResetInstance::setInstancePropertyName
-     * @covers donbidon\Lib\PHPUnit\T_ResetInstance::allowToResetInstance
+     * @covers \donbidon\Lib\PHPUnit\T_ResetInstance::resetInstance
+     * @covers \donbidon\Lib\PHPUnit\T_ResetInstance::setInstancePropertyName
+     * @covers \donbidon\Lib\PHPUnit\T_ResetInstance::allowToResetInstance
      */
     public function testFunctionality()
     {
