@@ -90,7 +90,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
      */
     protected static function skipGroup($group, $isolate = TRUE)
     {
-        self::modyfyGroup($group, $isolate);
+        self::modifyGroup($group, $isolate);
         self::$groupsToSkip[$group] = TRUE;
     }
 
@@ -107,10 +107,10 @@ class TestCase extends \PHPUnit\Framework\TestCase
         $group, $isolate = TRUE
     )
     {
-        self::modyfyGroup($group, $isolate);
+        self::modifyGroup($group, $isolate);
         if (isset(self::$groupsToSkip[(string)$group])) {
             self::markTestSkipped(sprintf(
-                "[SKIPPED] Some previous tests from '%s' group are skipped or incompleted",
+                "[SKIPPED] Some previous tests from '%s' group are skipped or incomplete",
                 $group
             ));
         }
@@ -126,10 +126,10 @@ class TestCase extends \PHPUnit\Framework\TestCase
      *
      * @return void
      *
-     * @link http://php.net/manual/en/reserved.constants.php PHP_OS constant
+     * @link http://php.net/manual/en/reserved.constants.php  PHP_OS constant
      * @see  self::skipGroup() $group and $isolate args
      */
-    protected function skipByOS(
+    protected static function skipByOS(
         $regExp, $message = "", $group = "", $isolate = TRUE
     )
     {
@@ -157,7 +157,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
      *
      * @internal
      */
-    protected static function modyfyGroup(&$group, $isolate)
+    protected static function modifyGroup(&$group, $isolate)
     {
         $group = (string)$group;
         if ($isolate) {
@@ -174,7 +174,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
      *
      * @link http://php.net/manual/en/function.echo.php  echo
      */
-    protected function _e($string)
+    protected static function _e($string)
     {
         fwrite(STDERR, $string);
     }
