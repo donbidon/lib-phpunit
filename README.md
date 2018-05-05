@@ -8,14 +8,6 @@ Look <a href="https://donbidon.github.io/docs/packages/lib-phpunit/" target="_bl
 ## Installing
 Add following code to your "composer.json" file
 ```json
-    "repositories": [
-        {
-            "type": "vcs",
-            "url":  "https://github.com/donbidon/lib-phpunit.git"
-        }
-    ],
-    "minimum-stability": "dev",
-    "prefer-stable":      true,
     "require": {
         "donbidon/lib-phpunit": "0.1.0"
     }
