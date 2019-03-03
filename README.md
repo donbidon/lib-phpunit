@@ -8,7 +8,7 @@ Look [API documentation](https://donbidon.github.io/docs/packages/lib-phpunit/).
 ## Installing
 Run `composer require donbidon/lib-phpunit 0.1.0` or add following code to your "composer.json" file
 ```json
-    "require": {
+    "require-dev": {
         "donbidon/lib-phpunit": "0.1.0"
     }
 ```
