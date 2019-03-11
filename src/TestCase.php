@@ -9,6 +9,8 @@
  * @license   https://opensource.org/licenses/mit-license.php
  */
 
+declare(strict_types=1);
+
 namespace donbidon\Lib\PHPUnit;
 
 error_reporting(E_ALL);
@@ -68,7 +70,9 @@ error_reporting(E_ALL);
  * \donbidon\Lib\PHPUnit\T_ResetInstance</a> implements functionality allowing
  * to reset singleton instance.</ li>
  * </ul>
-* <!-- /move -->
+ * <!-- /move -->
+ *
+ * @todo Cover by unit tests.
  */
 class TestCase extends \PHPUnit\Framework\TestCase
 {
@@ -88,10 +92,10 @@ class TestCase extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    protected static function skipGroup($group, $isolate = TRUE)
+    protected static function skipGroup(string $group, bool $isolate = TRUE): void
     {
-        self::modifyGroup($group, $isolate);
-        self::$groupsToSkip[$group] = TRUE;
+        static::modifyGroup($group, $isolate);
+        static::$groupsToSkip[$group] = TRUE;
     }
 
     /**
@@ -104,12 +108,12 @@ class TestCase extends \PHPUnit\Framework\TestCase
      * @return void
      */
     protected static function checkGroupIfSkipped(
-        $group, $isolate = TRUE
-    )
+        string $group, bool $isolate = TRUE
+    ): void
     {
-        self::modifyGroup($group, $isolate);
-        if (isset(self::$groupsToSkip[(string)$group])) {
-            self::markTestSkipped(sprintf(
+        static::modifyGroup($group, $isolate);
+        if (isset(static::$groupsToSkip[(string)$group])) {
+            static::markTestSkipped(sprintf(
                 "[SKIPPED] Some previous tests from '%s' group are skipped or incomplete",
                 $group
             ));
@@ -130,17 +134,17 @@ class TestCase extends \PHPUnit\Framework\TestCase
      * @see  self::skipGroup() $group and $isolate args
      */
     protected static function skipByOS(
-        $regExp, $message = "", $group = "", $isolate = TRUE
-    )
+        string $regExp, string $message = "", string $group = "", bool $isolate = TRUE
+    ): void
     {
         if (preg_match($regExp, PHP_OS)) {
-            self::markTestSkipped(sprintf(
+            static::markTestSkipped(sprintf(
                 "[SKIPPED][OS][%s]%s",
                 PHP_OS,
                 "" === $message ? "" : sprintf(" %s", $message)
             ));
             if ("" !== $group) {
-                self::skipGroup($group, $isolate);
+                static::skipGroup($group, $isolate);
             }
         }
     }
@@ -157,7 +161,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
      *
      * @internal
      */
-    protected static function modifyGroup(&$group, $isolate)
+    protected static function modifyGroup(string &$group, bool $isolate): void
     {
         $group = (string)$group;
         if ($isolate) {
@@ -174,7 +178,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
      *
      * @link http://php.net/manual/en/function.echo.php  echo
      */
-    protected static function _e($string)
+    protected static function _e(string $string): void
     {
         fwrite(STDERR, $string);
     }
@@ -188,9 +192,9 @@ class TestCase extends \PHPUnit\Framework\TestCase
      *
      * @link http://php.net/manual/en/function.print-r.php  print_r()
      */
-    protected static function _pr($expression)
+    protected static function _pr($expression): void
     {
-        self::_e(print_r($expression, TRUE));
+        static::_e(print_r($expression, TRUE));
     }
 
     /**
@@ -202,13 +206,13 @@ class TestCase extends \PHPUnit\Framework\TestCase
      *
      * @link http://php.net/manual/en/function.var-dump.php  var_dump()
      */
-    protected static function _vd($expression)
+    protected static function _vd($expression): void
     {
         ob_start();
         var_dump($expression);
         $string = ob_get_contents();
         ob_end_clean();
-        self::_e($string);
+        static::_e($string);
     }
 
     /**
@@ -220,8 +224,8 @@ class TestCase extends \PHPUnit\Framework\TestCase
      *
      * @link http://php.net/manual/en/function.var-export.php  var_export()
      */
-    protected static function _ve($expression)
+    protected static function _ve($expression): void
     {
-        self::_e(var_export($expression, TRUE));
+        static::_e(var_export($expression, TRUE));
     }
 }

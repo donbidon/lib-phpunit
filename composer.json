@@ -8,11 +8,17 @@
     "authors": [
         {
             "name":     "donbidon",
-            "homepage": "http://donbidon.rf.gd/"
+            "homepage": "http://donbidon.rf.gd/",
+            "role":     "lead"
         }
     ],
+    "prefer-stable": true,
+    "support": {
+        "issues": "https://github.com/donbidon/lib-phpunit/issues"
+    },
     "require": {
-        "phpunit/phpunit" : "^7.0"
+        "php": "^7.2",
+        "phpunit/phpunit" : "^8"
     },
     "autoload": {
         "psr-4": {
@@ -21,7 +27,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-             "donbidon\\Lib\\PHPUnit\\":  "tests"
+             "donbidon\\Lib\\PHPUnit\\":  ["tests", "tests/src"]
          }
     }
 }

@@ -6,6 +6,8 @@
  * @license   https://opensource.org/licenses/mit-license.php
  */
 
+declare(strict_types=1);
+
 namespace donbidon\Lib\PHPUnit;
 
 /**
@@ -66,9 +68,10 @@ trait T_ResetInstance
      * Resets static instance.
      *
      * @return void
+     *
      * @throws \RuntimeException  If resetting of instance disallowed
      */
-    public static function resetInstance()
+    public static function resetInstance(): void
     {
         $name = self::$instancePropertyName;
         if (is_object(self::$$name)) {
@@ -86,9 +89,10 @@ trait T_ResetInstance
      * Sets instance property name.
      *
      * @param  string $name
+     *
      * @return void
      */
-    protected static function setInstancePropertyName($name)
+    protected static function setInstancePropertyName(string $name): void
     {
         self::$instancePropertyName = (string)$name;
     }
@@ -99,8 +103,8 @@ trait T_ResetInstance
      * @param  bool $allow
      * @return void
      */
-    protected function allowToResetInstance($allow = TRUE)
+    protected function allowToResetInstance(bool $allow = TRUE): void
     {
-        $this->allowToResetInstance = (bool)$allow;
+        $this->allowToResetInstance = $allow;
     }
 }
