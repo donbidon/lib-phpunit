@@ -2,7 +2,6 @@
     "name": "donbidon/lib-phpunit",
     "type": "library",
     "description": "PHPUnit extension",
-    "homepage": "https://github.com/donbidon/lib-phpunit",
     "keywords": ["testing", "php", "phpunit"],
     "license": "MIT",
     "authors": [
@@ -12,7 +11,8 @@
             "role":     "lead"
         }
     ],
-    "prefer-stable": true,
+    "minimum-stability": "dev",
+    "prefer-stable":      true,
     "support": {
         "issues": "https://github.com/donbidon/lib-phpunit/issues"
     },
